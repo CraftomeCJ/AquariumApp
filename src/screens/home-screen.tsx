@@ -1,4 +1,3 @@
-// home-screen.tsx (UI-only prototype)
 import React from 'react';
 import {
 	View,
