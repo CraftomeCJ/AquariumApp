@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { getImage } from '../components/get-images';
 import Header from '../components/header';
 import QuickLinkItems from '../components/quick-link-items';
@@ -24,23 +16,19 @@ import {
 
 const HomeScreen: React.FC = () => {
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
       <View style={styles.container}>
         <View style={styles.scrollView}>
           {/* Header */}
           <Header />
-
           {/* Navigation Tabs */}
-          <ScrollView horizontal style={styles.tabsContainer}>
-            <FlatList
-              data={TAB_ITEMS}
-              keyExtractor={(item) => item.name}
-              renderItem={({ item }) => <TabItems {...item} />}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-            />
-          </ScrollView>
-
+          <FlatList
+            data={TAB_ITEMS}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => <TabItems {...item} />}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
           {/* Quick Access Grid */}
           <FlatList
             data={GRID_ITEMS}
@@ -49,31 +37,25 @@ const HomeScreen: React.FC = () => {
             numColumns={3}
             contentContainerStyle={styles.gridContainer}
           />
-
           {/* Status Cards */}
           <View style={styles.statusContainer}>
             {STATUS_CARDS.map((card, index) => (
               <StatusCard key={index} {...card} />
             ))}
           </View>
-
           {/* Upcoming Shows */}
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Upcoming Shows</Text>
             <Text style={styles.viewAll}>View all</Text>
           </View>
-
-          <ScrollView horizontal style={styles.showsContainer}>
-            <FlatList
-              data={SHOWS}
-              keyExtractor={(item, index) => `${item.time}-${index}`}
-              renderItem={({ item }) => <UpcomingShowCards {...item} />}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-            />
-          </ScrollView>
+          <FlatList
+            data={SHOWS}
+            keyExtractor={(item, index) => `${item.time}-${index}`}
+            renderItem={({ item }) => <UpcomingShowCards {...item} />}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
-
         {/* Bottom Navigation */}
         <View style={styles.bottomNav}>
           <View style={styles.navItem}>
@@ -108,7 +90,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    marginBottom: 60, // Space for bottom nav
+    marginBottom: 80, // Space for bottom nav
   },
   header: {
     flexDirection: 'row',
@@ -126,7 +108,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#666666',
     marginHorizontal: 8,
-    flexWrap: 'wrap',
   },
   notificationIcon: {
     width: 24,
@@ -176,8 +157,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   gridContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
     padding: 8,
   },
   gridItem: {
@@ -242,6 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
     borderTopColor: '#DDDDDD',
+    // paddingBottom: 20, // Add padding to respect safe area
   },
   navItem: {
     alignItems: 'center',
