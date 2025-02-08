@@ -26,7 +26,7 @@ const HomeScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
-        <ScrollView style={styles.scrollView}>
+        <View style={styles.scrollView}>
           {/* Header */}
           <Header />
 
@@ -72,7 +72,7 @@ const HomeScreen: React.FC = () => {
               showsHorizontalScrollIndicator={false}
             />
           </ScrollView>
-        </ScrollView>
+        </View>
 
         {/* Bottom Navigation */}
         <View style={styles.bottomNav}>

@@ -11,11 +11,11 @@ export const TAB_ITEMS: TabItem[] = [
 
 export const GRID_ITEMS: GridItem[] = [
   { name: 'Map', icon: 'map-icon' },
-  { name: 'Inhabitants', icon: 'inhabitants-icon' },
+  { name: 'Inhabitants', icon: 'dine-icon' },
   { name: 'Shows', icon: 'shows-icon' },
   { name: 'Shopping', icon: 'shopping-icon' },
   { name: 'Dine', icon: 'dine-icon' },
-  { name: 'Meet & Greets', icon: 'meet-and-greets-icon' },
+  { name: 'Meet & Greets', icon: 'meet-greets-icon' },
 ];
 
 export const STATUS_CARDS: StatusCard[] = [

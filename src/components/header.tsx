@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { getImage } from './get-images';
 
-const HeaderComponent: React.FC = () => (
+const Header: React.FC = () => (
   <View style={styles.header}>
-    <Text style={styles.headerTitle}>S.E.A.</Text>
+    <Image source={getImage('header-logo')} />
     <Text style={styles.headerSubtitle}>
       Don't miss our daily Dive Feeding!
     </Text>
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeaderComponent;
+export default Header;
