@@ -13,12 +13,10 @@ const HomeScreen = () => {
           <View style={styles.header}>
             <Text style={styles.headerTitle}>S.E.A.</Text>
             <Text style={styles.headerSubtitle}>
-              Don't miss our daily Dive Feeding! Don't miss our daily Dive
-              Feeding! Don't miss our daily Dive Feeding! Don't miss our daily
-              Dive Feeding!
+              Don't miss our daily Dive Feeding!
             </Text>
             <Image
-              source={require('../assets/notification-icon.png')}
+              source={getImage('notification-icon')}
               style={styles.notificationIcon}
             />
           </View>
@@ -51,7 +49,7 @@ const HomeScreen = () => {
             ].map((item) => (
               <View key={item} style={styles.gridItem}>
                 <Image
-                  source={require('../assets/map-icon.png')}
+                  source={getImage('map-icon')}
                   style={styles.gridIcon}
                 />
                 <Text style={styles.gridText}>{item}</Text>
@@ -112,22 +110,16 @@ const HomeScreen = () => {
         {/* Bottom Navigation */}
         <View style={styles.bottomNav}>
           <View style={styles.navItem}>
-            <Image
-              source={require('../assets/home-icon.png')}
-              style={styles.navIcon}
-            />
+            <Image source={getImage('home-icon')} style={styles.navIcon} />
             <Text style={styles.navText}>Home</Text>
           </View>
           <View style={styles.navItem}>
-            <Image
-              source={require('../assets/unknown-icon.png')}
-              style={styles.navIcon}
-            />
+            <Image source={getImage('unknown-icon')} style={styles.navIcon} />
             <Text style={styles.navText}>Wallet</Text>
           </View>
           <View style={styles.navItem}>
             <Image
-              source={require('../assets/three-dot-circle-icon.png')}
+              source={getImage('three-dot-circle-icon')}
               style={styles.navIcon}
             />
             <Text style={styles.navText}>More</Text>

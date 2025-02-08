@@ -66,5 +66,5 @@ const imageSourceArray: Image[] = [
 
 export const getImage = (name: string) => {
   const found = imageSourceArray.find((e) => e.name === name);
-  return found?.image || null;
+  return found?.image;
 };
