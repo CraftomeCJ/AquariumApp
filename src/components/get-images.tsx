@@ -1,8 +1,8 @@
-import { Platform } from 'react-native';
+import { ImageSourcePropType, Platform } from 'react-native';
 
 interface Image {
   name: string;
-  image: any;
+  image: ImageSourcePropType;
 }
 
 const imageSourceArray: Image[] = [
@@ -63,12 +63,8 @@ const imageSourceArray: Image[] = [
     image: require('../assets/people-icon.png'),
   },
 ];
-export const isAndroid = Platform.OS === 'android';
+
 export const getImage = (name: string) => {
   const found = imageSourceArray.find((e) => e.name === name);
-  const androidImageName =
-    '__packages_rncommons_assets_' +
-    found?.name?.toLowerCase()?.split('-').join('');
-  const image = isAndroid ? { uri: androidImageName } : found?.image;
-  return found ? image : null;
+  return found?.image;
 };
