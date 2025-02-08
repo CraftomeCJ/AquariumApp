@@ -13,11 +13,19 @@ import {
   STATUS_CARDS,
   TAB_ITEMS,
 } from '../constants/dashboard-constants';
+import { useTheme } from '../utils/ThemeProvider';
 
 const HomeScreen: React.FC = () => {
+  // Access the theme using the useTheme hook
+  const theme = useTheme();
+
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
-      <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: theme.colors.background }]}
+    >
+      <View
+        style={[styles.container, { backgroundColor: theme.colors.background }]}
+      >
         <View style={styles.scrollView}>
           {/* Header */}
           <Header />
@@ -45,8 +53,14 @@ const HomeScreen: React.FC = () => {
           </View>
           {/* Upcoming Shows */}
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Upcoming Shows</Text>
-            <Text style={styles.viewAll}>View all</Text>
+            <Text
+              style={[styles.sectionTitle, { color: theme.colors.textPrimary }]}
+            >
+              Upcoming Shows
+            </Text>
+            <Text style={[styles.viewAll, { color: theme.colors.link }]}>
+              View all
+            </Text>
           </View>
           <FlatList
             data={SHOWS}
@@ -60,18 +74,30 @@ const HomeScreen: React.FC = () => {
         <View style={styles.bottomNav}>
           <View style={styles.navItem}>
             <Image source={getImage('home-icon')} style={styles.navIcon} />
-            <Text style={styles.navText}>Home</Text>
+            <Text
+              style={[styles.navText, { color: theme.colors.textSecondary }]}
+            >
+              Home
+            </Text>
           </View>
           <View style={styles.navItem}>
             <Image source={getImage('unknown-icon')} style={styles.navIcon} />
-            <Text style={styles.navText}>Wallet</Text>
+            <Text
+              style={[styles.navText, { color: theme.colors.textSecondary }]}
+            >
+              Wallet
+            </Text>
           </View>
           <View style={styles.navItem}>
             <Image
               source={getImage('three-dot-circle-icon')}
               style={styles.navIcon}
             />
-            <Text style={styles.navText}>More</Text>
+            <Text
+              style={[styles.navText, { color: theme.colors.textSecondary }]}
+            >
+              More
+            </Text>
           </View>
         </View>
       </View>
@@ -86,7 +112,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   scrollView: {
     flex: 1,
@@ -96,119 +121,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#F8F8F8',
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#333333',
-  },
-  headerSubtitle: {
-    flex: 1,
-    textAlign: 'center',
-    color: '#666666',
-    marginHorizontal: 8,
-  },
-  notificationIcon: {
-    width: 24,
-    height: 24,
-  },
-  tabsContainer: {
-    backgroundColor: '#FFFFFF',
-    paddingVertical: 8,
-  },
-  tab: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    marginHorizontal: 4,
-    backgroundColor: '#EEEEEE',
-    borderRadius: 20,
-  },
-  tabText: {
-    fontSize: 14,
-    color: '#444444',
-  },
-  statusContainer: {
-    flexDirection: 'row',
-    padding: 16,
-  },
-  statusCard: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 8,
-    padding: 16,
-    margin: 8,
-  },
-  statusTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#222222',
-  },
-  statusText: {
-    color: '#666666',
-    marginVertical: 8,
-  },
-  statusButton: {
-    padding: 8,
-    borderRadius: 4,
-  },
-  buttonText: {
-    color: '#FF5A5F',
-    textAlign: 'center',
-  },
-  gridContainer: {
-    padding: 8,
-  },
-  gridItem: {
-    width: '33.33%',
-    alignItems: 'center',
-    padding: 12,
-  },
-  gridIcon: {
-    width: 32,
-    height: 32,
-    marginBottom: 8,
-  },
-  gridText: {
-    fontSize: 12,
-    color: '#444444',
-    textAlign: 'center',
   },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#FFFFFF',
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#222222',
   },
   viewAll: {
-    color: '#007AFF',
-  },
-  showsContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    marginRight: 16,
-  },
-  showCard: {
-    width: 200,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 8,
-    padding: 16,
-    marginRight: 16,
-  },
-  showTime: {
-    color: '#666666',
-    marginBottom: 8,
-  },
-  showTitle: {
     fontSize: 14,
-    color: '#222222',
+  },
+  statusContainer: {
+    flexDirection: 'row',
+    padding: 16,
+  },
+  gridContainer: {
+    padding: 8,
   },
   bottomNav: {
     position: 'absolute',
@@ -218,10 +150,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 12,
-    backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
     borderTopColor: '#DDDDDD',
-    // paddingBottom: 20, // Add padding to respect safe area
   },
   navItem: {
     alignItems: 'center',
@@ -233,7 +163,6 @@ const styles = StyleSheet.create({
   },
   navText: {
     fontSize: 12,
-    color: '#444444',
   },
 });
 
