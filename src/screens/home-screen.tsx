@@ -1,81 +1,60 @@
 import React from 'react';
-import { View, ScrollView, Text, StyleSheet, Image } from 'react-native';
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getImage } from '../components/get-images';
 
-const HomeScreen = () => {
+import { getImage } from '../components/get-images';
+import Header from '../components/header';
+import QuickLinkItems from '../components/quick-link-items';
+import StatusCard from '../components/status-card';
+import TabItems from '../components/tab-items';
+import UpcomingShowCards from '../components/upcoming-show-card';
+import {
+  GRID_ITEMS,
+  SHOWS,
+  STATUS_CARDS,
+  TAB_ITEMS,
+} from '../constants/dashboard-constants';
+
+const HomeScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
-        {/* Main Content */}
         <ScrollView style={styles.scrollView}>
           {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.headerTitle}>S.E.A.</Text>
-            <Text style={styles.headerSubtitle}>
-              Don't miss our daily Dive Feeding!
-            </Text>
-            <Image
-              source={getImage('notification-icon')}
-              style={styles.notificationIcon}
-            />
-          </View>
+          <Header />
 
           {/* Navigation Tabs */}
           <ScrollView horizontal style={styles.tabsContainer}>
-            {[
-              'Map',
-              'Inhabitants',
-              'Shows',
-              'Shopping',
-              'Dine',
-              'Meet & Greets',
-            ].map((tab) => (
-              <View key={tab} style={styles.tab}>
-                <Text style={styles.tabText}>{tab}</Text>
-              </View>
-            ))}
+            <FlatList
+              data={TAB_ITEMS}
+              keyExtractor={(item) => item.name}
+              renderItem={({ item }) => <TabItems {...item} />}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
           </ScrollView>
 
           {/* Quick Access Grid */}
-          <View style={styles.gridContainer}>
-            {[
-              'Map',
-              'Inhabitants',
-              'Shows',
-              'Shopping',
-              'Dine',
-              'Meet & Greets',
-            ].map((item) => (
-              <View key={item} style={styles.gridItem}>
-                <Image
-                  source={getImage('map-icon')}
-                  style={styles.gridIcon}
-                />
-                <Text style={styles.gridText}>{item}</Text>
-              </View>
-            ))}
-          </View>
+          <FlatList
+            data={GRID_ITEMS}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => <QuickLinkItems {...item} />}
+            numColumns={3}
+            contentContainerStyle={styles.gridContainer}
+          />
 
           {/* Status Cards */}
           <View style={styles.statusContainer}>
-            <View style={styles.statusCard}>
-              <Text style={styles.statusTitle}>My e-tickets</Text>
-              <Text style={styles.statusText}>There aren't any yet</Text>
-              <View style={styles.statusButton}>
-                <Text style={styles.buttonText}>Retrieve here</Text>
-              </View>
-            </View>
-
-            <View style={styles.statusCard}>
-              <Text style={styles.statusTitle}>Park hours</Text>
-              <Text style={styles.statusText}>
-                Today, 13 Feb{'\n'}10am - 5pm
-              </Text>
-              <View style={styles.statusButton}>
-                <Text style={styles.buttonText}>Plan my visit</Text>
-              </View>
-            </View>
+            {STATUS_CARDS.map((card, index) => (
+              <StatusCard key={index} {...card} />
+            ))}
           </View>
 
           {/* Upcoming Shows */}
@@ -85,25 +64,13 @@ const HomeScreen = () => {
           </View>
 
           <ScrollView horizontal style={styles.showsContainer}>
-            <View style={styles.showCard}>
-              <Text style={styles.showTime}>2:30 PM</Text>
-              <Text style={styles.showTitle}>Dive Feeding @ Shipwreck</Text>
-            </View>
-            <View style={styles.showCard}>
-              <Text style={styles.showTime}>2:40 PM</Text>
-              <Text style={styles.showTitle}>Say Cheese Shark</Text>
-            </View>
-            <View style={styles.showCard}>
-              <Text style={styles.showTime}>2:30 PM</Text>
-              <Text style={styles.showTitle}>
-                Dive Feeding @ Shipwreck Dive Feeding @ Shipwreck Dive Feeding @
-                Shipwreck Dive Feeding @ Shipwreck
-              </Text>
-            </View>
-            <View style={styles.showCard}>
-              <Text style={styles.showTime}>2:40 PM</Text>
-              <Text style={styles.showTitle}>Say Cheese Shark</Text>
-            </View>
+            <FlatList
+              data={SHOWS}
+              keyExtractor={(item, index) => `${item.time}-${index}`}
+              renderItem={({ item }) => <UpcomingShowCards {...item} />}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
           </ScrollView>
         </ScrollView>
 

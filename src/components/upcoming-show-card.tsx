@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Show } from '../types/types';
 
-const UpcomingShowCard: React.FC<Show> = ({ time, title }) => (
+const UpcomingShowCards: React.FC<Show> = ({ time, title }) => (
   <View style={styles.showCard}>
     <Text style={styles.showTime}>{time}</Text>
     <Text style={styles.showTitle}>{title}</Text>
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UpcomingShowCard;
+export default UpcomingShowCards;

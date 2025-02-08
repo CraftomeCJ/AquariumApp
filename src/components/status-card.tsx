@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { StatusCard } from '../types/types';
 
-const StatusCard: React.FC<StatusCard> = ({ title, text, buttonText }) => (
+const StatusCards: React.FC<StatusCard> = ({ title, text, buttonText }) => (
   <View style={styles.statusCard}>
     <Text style={styles.statusTitle}>{title}</Text>
     <Text style={styles.statusText}>{text}</Text>
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StatusCard;
+export default StatusCards;

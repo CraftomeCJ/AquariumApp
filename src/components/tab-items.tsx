@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TabItem } from '../types/types';
 
-const TabItem: React.FC<TabItem> = ({ name }) => (
+const TabItems: React.FC<TabItem> = ({ name }) => (
   <View style={styles.tab}>
     <Text style={styles.tabText}>{name}</Text>
   </View>
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabItem;
+export default TabItems;
